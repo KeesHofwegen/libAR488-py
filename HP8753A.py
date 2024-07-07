@@ -23,8 +23,9 @@ if __name__ == "__main__":
 
     inst8753A.write("CHAN2\n\r")
     
-    result = inst8753A.query("OUTPPLOT\n\r")
-    #hex_array = [hex(ord(int))[2:] for int in result]
-    print( print(' '.join(f'{x:02x}' for x in result)))
-    sys.stdout.write("\'"+result.decode("utf-8")+"\'\n")
+    #result = inst8753A.query("outpCALK\n\r")
+    result = inst8753A.query("outpplot\n\r")
+    print ("leght {}", len(result))
+    print(' '.join(f'{x:02x}' for x in result))
+    sys.stdout.write("\n\n\'"+result.decode("utf-8")+"\'\n")
 

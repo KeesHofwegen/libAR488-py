@@ -1,10 +1,8 @@
 from time import sleep
 import serial
 import sys
-import string
 import logging
 import sys
-import glob
 
 # notes:
 # '\r', '\n', and '+' are control characters that must be escaped in binary data
@@ -215,7 +213,6 @@ class AR448Instrument(object):
         return self.read()
     
     def query(self, cmd):
-        #print("cmd" + cmd)
         retry  = 4
         gotIt  = False
         result = bytearray()
@@ -236,9 +233,8 @@ class AR448Instrument(object):
             retry-=1
         # Convert the string to a list of hexadecimal values
         if not self._verbose:    
-            hex_array = [hex(ord(int))[2:] for int in result]
-            print(">>>>Hexadecimal array:", hex_array)
-            print(">>>>Query result:" +result)
+            print(' '.join(f'{x:02x}' for x in result))
+            #print(">>>>Query result:" +result)
 
         return result
     
