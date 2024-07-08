@@ -2,6 +2,7 @@ from time import sleep
 import serial
 import sys
 import string
+import glob
 from AR448Instrument import *
 
 class ScpiInstrumentWrapper(object):
