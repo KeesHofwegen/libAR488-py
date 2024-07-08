@@ -28,11 +28,11 @@ if __name__ == "__main__":
     result = inst2955A.query("RD39\n\r")
     sys.stdout.write(result.decode("UTF-8")+"\n")
 
-    two=40;
+    two=30;
     while (two>0 and len(result)>0):
         inst2955A.write("++read\n\r")
         result = inst2955A.read()
-        sys.stdout.write(result+"\n")
+        sys.stdout.write(result.decode("UTF-8"))
         two = two -1
     
     print("$ restore local (front panel) control of 29955A")

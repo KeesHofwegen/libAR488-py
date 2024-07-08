@@ -40,7 +40,7 @@ class ScpiInstrumentWrapper(object):
     def write(self, cmd):
         self._inst.write(cmd)
     def read(self,):
-        return self._inst.read().decode("UTF-8").strip('\n')
+        return self._inst.read()
 
     def getErr( self ):
         err = self.ask( 'SYST:ERR?' )

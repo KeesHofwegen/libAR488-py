@@ -201,11 +201,20 @@ class AR448Instrument(object):
             print(">> {}".format(message.encode("ASCII")))
 
     def read(self):
+        result= bytearray()
         """Read from GPIB bus. return bytearry"""
         byteReadline = self.ser.readline()
+        result=result + byteReadline
+        #waitin = self.ser.in_waiting
+        print ("read length {}", len(byteReadline))
+        while ( len(byteReadline)> 0) :
+            #print("Read Loop")
+            byteReadline = self.ser.readline()
+            print ("read-length {}", len(byteReadline))
+            result=result+ byteReadline
         if not self._verbose:
-            print("<< len {} :".format(len(byteReadline)) + byteReadline.decode("UTF-8"))
-        return byteReadline
+            print("<< len {} :".format(len(result)) + result.decode("UTF-8"))
+        return result
    
     def simplequery1(self, message):
         "Write message to GPIB bus and read results."""
@@ -221,21 +230,21 @@ class AR448Instrument(object):
             if not self._verbose:
                 print("-- retry:"+str(retry))
             self.write(cmd)
-            sleep(0.5)
+            #sleep(0.5)
             
             self.write("++read eoi\n\r")
             stri = self.read()
-            i=0
-            while len(stri) > 1 :
+            #i=0
+            while len(stri) > 0 :
                 gotIt =True
-                result.extend(stri)
+                result=result +stri
                 stri = self.read()
-            retry-=1
+        retry-=1
         # Convert the string to a list of hexadecimal values
         if not self._verbose:    
             print(' '.join(f'{x:02x}' for x in result))
             #print(">>>>Query result:" +result)
-
+        #result= stri
         return result
     
     # Prologix commands
