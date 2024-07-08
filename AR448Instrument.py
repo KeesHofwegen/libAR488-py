@@ -206,11 +206,11 @@ class AR448Instrument(object):
         byteReadline = self.ser.readline()
         result=result + byteReadline
         #waitin = self.ser.in_waiting
-        print ("read length {}", len(byteReadline))
+        #print ("read length {}", len(byteReadline))
         while ( len(byteReadline)> 0) :
             #print("Read Loop")
             byteReadline = self.ser.readline()
-            print ("read-length {}", len(byteReadline))
+            #print ("read-length {}", len(byteReadline))
             result=result+ byteReadline
         if not self._verbose:
             print("<< len {} :".format(len(result)) + result.decode("UTF-8"))
