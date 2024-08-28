@@ -1,0 +1,10 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: libAR488-py
+  annotations:
+    github.com/project-slug: KeesHofwegen/libAR488-py
+spec:
+  type: other
+  lifecycle: unknown
+  owner: guests
